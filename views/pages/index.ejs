@@ -15,12 +15,22 @@
       <li><a href="http://localhost:3000/rate">Rate</a></li>
     </ul>
 
-
-    <button onclick="image()">Download Recipe</button>
+    <div class="recipes">
+      <h3><%= posts.title %></h3>
+      <ul>
+        <% posts.forEach(function(post) { %>
+          <li>
+            <strong><%= post.title %></strong>
+            <button onclick="image()">Download Recipe</button>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+   
   </body>
   <script>
     function image() {
-      window.location = '/image'
+      window.location = './public/image'
     }
     </script>
 </html>

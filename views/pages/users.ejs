@@ -14,5 +14,33 @@
     <li><a href="http://localhost:3000/users">Users</a></li>
     <li><a href="http://localhost:3000/rate">Rate</a></li>
   </ul>
+
+  <div class="users">
+    <h3><%= users.title %></h3>
+    <ul>
+      <% users.forEach(function(user) { %>
+        <li>
+          <strong>User Id: <%= user.id %></strong>
+        </li>
+        
+        <li>
+          <strong>Username: <%= user.username %></strong>
+        </li>
+        <li><strong>Email: <%= user.email %></strong>
+          </li>
+        <br>
+      <% }); %>
+    </ul>
+    <form>
+      <ul>Add user:<br>
+      <label for="fname">Your name:</label><br>
+      <input type="text" id="fname" name="fname"><br>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br>
+      <input type="submit" value="Submit"></ul>
+    </form>
+  </div>
 </body>
 </html>
