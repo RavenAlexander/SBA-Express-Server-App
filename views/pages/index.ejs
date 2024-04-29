@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Document</title>
+</head>
+  <body>
+    <h1>Welcome to <%= title.name %></h1>
+    <ul>
+      <li><a href="http://localhost:3000/">Home </a></li>
+      <li><a href="http://localhost:3000/users">Users</a></li>
+      <li><a href="http://localhost:3000/rate">Rate</a></li>
+    </ul>
+
+
+    <button onclick="image()">Download Recipe</button>
+  </body>
+  <script>
+    function image() {
+      window.location = '/image'
+    }
+    </script>
+</html>

@@ -1,24 +1,6 @@
 {
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2"
-  },
-  "name": "sba-expressserver",
-  "description": "",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.12.7",
-    "typescript": "^5.4.5"
-  },
-  "scripts": {
-    "build": "tsc",
-    "start": "tsc & node .",
-    "dev": "tsc -w & nodemon ."
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }
