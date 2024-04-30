@@ -14,7 +14,7 @@ This project features a homemade API that tracks sample user data. The idea is t
 HTML, JS, CSS, NodeJS, Express, EJS (view engine)
 
 # You must download these dependencies:
-npm i express ejs body-parser nodemon
+`npm i express ejs body-parser nodemon`
 
 Run `nodemon server.js` to start the server and view the browser page.
 
