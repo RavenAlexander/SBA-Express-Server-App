@@ -10,15 +10,15 @@ This project features a homemade API that tracks sample user data. The idea is t
 - Use a template engine to render views with Express.
 - Interact with a self-made API through HTML forms.
 
-# Languages and Tools Used
+## Languages and Tools Used
 HTML, JS, CSS, NodeJS, Express, EJS (view engine)
 
-# You must download these dependencies:
+## You must download these dependencies:
 `npm i express ejs body-parser nodemon`
 
 Run `nodemon server.js` to start the server and view the browser page.
 
-# Blockers:
+## Blockers:
 The app is not fully functional because I didn't have enough time to solve some of the interactive requests, but I do provide code commentary to reflect that. 
 
 ## Disclaimer:
