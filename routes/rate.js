@@ -9,7 +9,7 @@ router
   .get((req, res) => {
     const links = [
       {
-        href: "rate/:id",
+        href: "api/rate",
         rel: ":id",
         type: "GET",
       },
@@ -32,7 +32,7 @@ router
   });
 
 router
-  .route("/:id")
+  .route("api/rate/:id")
   .get((req, res, next) => {
     const rating = ratings.find((p) => p.id == req.params.id);
 
@@ -40,7 +40,7 @@ router
       {
         href: `/${req.params.id}`,
         rel: "",
-        type: "PATCH",
+        type: "PUT",
       },
       {
         href: `/${req.params.id}`,

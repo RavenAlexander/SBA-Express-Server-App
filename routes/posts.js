@@ -9,7 +9,7 @@ router
   .get((req, res) => {
     const links = [
       {
-        href: "posts/:id",
+        href: "/api/posts/:id",
         rel: ":id",
         type: "GET",
       },
@@ -32,19 +32,19 @@ router
   });
 
 router
-  .route("/:id")
+  .route("api/posts/:id")
   .get((req, res, next) => {
     const post = posts.find((p) => p.id == req.params.id);
 
     const links = [
       {
         href: `/${req.params.id}`,
-        rel: "",
+        rel: ":id",
         type: "PATCH",
       },
       {
         href: `/${req.params.id}`,
-        rel: "",
+        rel: ":id",
         type: "DELETE",
       },
     ];

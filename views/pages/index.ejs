@@ -4,33 +4,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
-  <title>Document</title>
+  <title>Recipe Viewer</title>
 </head>
   <body>
-    <h1>Welcome to <%= title.name %></h1>
-    <ul>
-      <li><a href="http://localhost:3000/">Home </a></li>
-      <li><a href="http://localhost:3000/users">Users</a></li>
-      <li><a href="http://localhost:3000/rate">Rate</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169e1;">
+      <a class="navbar-brand" href="/">Recipe Viewer</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="http://localhost:3000/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="http://localhost:3000/users">Users</a>
+          <a class="nav-item nav-link" href="http://localhost:3000/rate">Rate</a>
+        </div>
+      </div>
+    </nav>
 
+    <h1>Welcome to <%= title.name %></h1>
+    <hr>
     <div class="recipes">
       <h3><%= posts.title %></h3>
       <ul>
         <% posts.forEach(function(post) { %>
-          <li>
-            <strong><%= post.title %></strong>
-            <button onclick="image()">Download Recipe</button>
-          </li>
+          <li><div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Post ID: <%= post.id %></h6>
+              <p class="card-text"><%= post.content %></p>
+              <button onclick="image()" class="btn btn-primary">Download Recipe</button>
+              <form action="api/posts/:id" method="DELETE"> <!--DELETE functionality is not working-->
+                <button type="submit" onclick="deletePost()" class="btn btn-outline-primary" >Delete Post</button>
+              </form>
+            </div>
+          </div>
+            </li>
+           
         <% }); %>
       </ul>
-    </div>
-   
+      <hr>
+      <h3>Add a New Recipe</h3>
+      <!-- Create Recipe Form-->
+      <form action="api/posts" method="POST">
+        <label for="userId">User ID:</label>
+        <input type="text" name="userId" id="userId"><br>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title"><br>
+        <label for="content">Content:</label>
+        <textarea name="content" id="content"></textarea><br>
+        <button type="submit" onclick="sendData()" class="btn btn-primary">Create Post</button>
+      </form>
+      <hr>
+      <h3>Update a Recipe</h3>
+      <!-- Update Recipe Form, functionality does not currently work -->
+      <form action="api/posts/:id" method="PATCH">
+  <label for="userId">User ID:</label>
+  <input type="text" name="userId" id="userId" value="1"><br>
+  <label for="title">Title:</label>
+  <input type="text" name="title" id="title" value="New Title"><br>
+  <label for="content">Content:</label>
+  <textarea name="content" id="content">New Content</textarea><br>
+  <button type="submit" class="btn btn-primary">Update Post</button>
+</form>
+<hr>
+</div>
+
   </body>
   <script>
     function image() {
       window.location = './public/image'
+    };
+
+    function sendData() {
+      app.post((req, res, next) => {
+    if (req.body.userId && req.body.title && req.body.content) {
+      const post = {
+        id: posts[posts.length - 1].id + 1,
+        userId: req.body.userId,
+        title: req.body.title,
+        content: req.body.content,
+      };
+
+      posts.push(post);
+      res.json(posts[posts.length - 1]);
+    } else next(error(400, "Insufficient Data"));
+  });
     }
+
+    function deletePost() {
+      app.delete((req, res, next) => {
+    const post = posts.find((p, i) => {
+      if (p.id == req.params.id) {
+        posts.splice(i, 1);
+        return true;
+      }
+    });
+
+    if (post) res.json(post);
+    else next();
+  });
+    }
+
+  
     </script>
 </html>

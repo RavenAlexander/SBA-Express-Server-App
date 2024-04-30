@@ -9,7 +9,7 @@ router
   .get((req, res) => {
     const links = [
       {
-        href: "users/:id",
+        href: "api/users",
         rel: ":id",
         type: "GET",
       },
@@ -36,7 +36,7 @@ router
   });
 
 router
-  .route("/:id")
+  .route("api/users/:id")
   .get((req, res, next) => {
     const user = users.find((u) => u.id == req.params.id);
 

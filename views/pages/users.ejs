@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <link rel="stylesheet" href="../css/style.css">
 
-  <title>Document</title>
+  <title>Recipe Viewer</title>
 </head>
 <body>
-  <h1><%= title.name %></h1>
-  <ul>
-    <li><a href="http://localhost:3000/">Home </a></li>
-    <li><a href="http://localhost:3000/users">Users</a></li>
-    <li><a href="http://localhost:3000/rate">Rate</a></li>
-  </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169e1;">
+    <a class="navbar-brand" href="/">Recipe Viewer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:3000/">Home</a>
+        <a class="nav-item nav-link active" href="http://localhost:3000/users">Users<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="http://localhost:3000/rate">Rate</a>
+      </div>
+    </div>
+  </nav>
 
+  <h1><%= title.name %></h1>
+<hr>
   <div class="users">
     <h3><%= users.title %></h3>
     <ul>
@@ -31,15 +42,19 @@
         <br>
       <% }); %>
     </ul>
-    <form>
-      <ul>Add user:<br>
-      <label for="fname">Your name:</label><br>
-      <input type="text" id="fname" name="fname"><br>
+
+    <!--Add a User-->
+    <form action="/api/users/" method="POST">
+      <ul><strong>Add user: (all forms must be filled)</strong><br>
+      <label for="userId">User ID:</label><br>
+      <input type="text" id="userId" name="userId" placeholder="must be a number"><br>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name"><br>
       <label for="username">Username:</label><br>
       <input type="text" id="username" name="username"><br>
       <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email"><br>
-      <input type="submit" value="Submit"></ul>
+      <input type="email" id="email" name="email"><br><br>
+      <input type="submit" value="Submit" class="btn btn-primary"></ul>
     </form>
   </div>
 </body>

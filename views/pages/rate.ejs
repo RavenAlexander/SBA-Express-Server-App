@@ -3,29 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <link rel="stylesheet" href="../css/style.css">
 
-  <title>Document</title>
+  <title>Recipe Viewer</title>
 </head>
 <body>
-  <h1><%= title.name %></h1>
-  <ul>
-    <li><a href="http://localhost:3000/">Home </a></li>
-    <li><a href="http://localhost:3000/users">Users</a></li>
-    <li><a href="http://localhost:3000/rate">Rate</a></li>
-  </ul>
-  <form action="#" method="post">
-    <div class="ratings">
-      <form>
-        <label for="fname">Recipe ID:</label><br>
-        <input type="text" id="fname" name="fname" placeholder="ID Number"><br>
-        <br>
-        <label for="lname">Rating:</label><br>
-        <input type="text" id="lname" name="lname" placeholder="(1=worst, 5=best)"><br><br>
-        <input type="submit" value="Add Rating">
-      </form>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169e1;">
+    <a class="navbar-brand" href="/">Recipe Viewer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:3000/">Home</a>
+        <a class="nav-item nav-link" href="http://localhost:3000/users">Users</a>
+        <a class="nav-item nav-link active" href="http://localhost:3000/rate">Rate <span class="sr-only">(current)</span></a>
+      </div>
     </div>
-   
-  </form>
+  </nav>
+
+    <h1><%= title.name %></h1>
+    <hr>
+  <div class="ratings">
+    <!--Add a Rating-->
+  <form action="/api/rate/" method="PUT">
+      <form>
+        <label for="recipeId">Recipe ID:</label><br>
+        <input type="text" id="recipeId" name="recipeId" placeholder="ID Number"><br>
+        <br>
+        <label for="rating">Rating:</label><br>
+        <input type="text" id="rating" name="rating" placeholder="(1=worst, 5=best)"><br><br>
+        <input type="submit" value="Add Rating" onmouseup="alert(`Rating added!`)" class="btn btn-primary">
+      </form>
+    </form>
+
+    
+  </div>
 </body>
 </html>
